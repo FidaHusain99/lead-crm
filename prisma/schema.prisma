@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  INTERESTED
+  FOLLOW_UP
+  CONVERTED
+  LOST
+}
+
+model Lead {
+  id            Int        @id @default(autoincrement())
+  name          String
+  mobile        String
+  email         String
+  company       String?
+  source        String
+  status        LeadStatus @default(NEW)
+  notes         String?    @db.Text
+  followUpDate  DateTime?
+  convertedDate DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([status])
+  @@index([followUpDate])
+}
