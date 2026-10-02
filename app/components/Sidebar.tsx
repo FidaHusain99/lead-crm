@@ -18,7 +18,7 @@ export default function Sidebar({ email }: { email: string }) {
   return (
     <>
       <div className="md:hidden flex items-center justify-between bg-gray-900 text-white px-4 py-3">
-        <span className="font-bold">Lead CRM</span>
+        <span className="font-bold">Lead CRM - Fida</span>
         <button
           onClick={() => setOpen(!open)}
           className="text-sm border border-gray-600 rounded px-3 py-1"
